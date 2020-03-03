@@ -28,6 +28,8 @@ def selectCentroid(arr):
         t2 = (sum_x_red/(len(redarr)),sum_y_red/len(redarr))
     return t1,t2
 def assignPoints(t1,t2,arr):
+    bluearr = []
+    redarr = []
     for (x,y) in arr:
         result = calculateShortestDistance(x,y,t1,t2)
         if result==1:
@@ -54,10 +56,10 @@ exit = False
 arr = []
 global count,bluearr,redarr
 count = 0
+bluearr = []
+redarr = []
 display.fill((255, 255, 255))
 while not exit:
-    bluearr = []
-    redarr = []
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit = True
