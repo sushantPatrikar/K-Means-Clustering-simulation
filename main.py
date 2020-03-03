@@ -13,6 +13,19 @@ def selectCentroid(arr):
         t2 = arr[i2]
         pygame.draw.circle(display,(255,0,0),t1,4)
         pygame.draw.circle(display,(0,0,255),t2,4)
+    else:
+        sum_x_blue = 0
+        sum_y_blue =0
+        sum_x_red = 0
+        sum_y_red = 0
+        for (x,y) in bluearr:
+            sum_x_blue+=x
+            sum_y_blue+=y
+        for (x,y) in redarr:
+            sum_x_red+=x
+            sum_y_red+=y
+        t1 = (sum_x_blue/len(bluearr),sum_y_blue/len(bluearr))
+        t2 = (sum_x_red/(len(redarr)),sum_y_red/len(redarr))
     return t1,t2
 def assignPoints(t1,t2,arr):
     for (x,y) in arr:
@@ -39,7 +52,7 @@ height = 600
 display = pygame.display.set_mode((width,height))
 exit = False
 arr = []
-global count
+global count,bluearr,redarr
 count = 0
 display.fill((255, 255, 255))
 while not exit:
