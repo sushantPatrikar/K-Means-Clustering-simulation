@@ -1,27 +1,33 @@
 import pygame
 import random
 import math
-import time
 
-white = (255,255,255)
-black = (0,0,0)
-red = (255,0,0)
-blue = (0,0,255)
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
+blue = (0, 0, 255)
+
+red_transparent = (255, 0, 0, 0.5)
+blue_transparent = (0, 0, 255, 0.5)
+
 
 def drawcircles(arr):
     for (x, y) in arr:
         pygame.draw.circle(display, black, (x, y), 4)
 
-def drawRedBlueCircles(redarr,bluearr):
-    for (x,y) in redarr:
-        pygame.draw.circle(display,red,(x,y),4)
 
-    for (x,y) in bluearr:
-        pygame.draw.circle(display,blue,(x,y),4)
+def drawRedBlueCircles(redarr, bluearr):
+    for (x, y) in redarr:
+        pygame.draw.circle(display, red, (x, y), 4)
 
-def drawCentroid(t1,t2):
-    pygame.draw.circle(display,blue,t1,5)
-    pygame.draw.circle(display,red,t2,5)
+    for (x, y) in bluearr:
+        pygame.draw.circle(display, blue, (x, y), 4)
+
+
+def drawCentroid(t1, t2):
+    pygame.draw.circle(display, blue_transparent, t1, 8)
+    pygame.draw.circle(display, red_transparent, t2, 8)
+
 
 def selectCentroid(arr, bluearr, redarr):
     if count == 0:
@@ -44,6 +50,10 @@ def selectCentroid(arr, bluearr, redarr):
             sum_y_red += y
         t1 = (sum_x_blue / len(bluearr), sum_y_blue / len(bluearr))
         t2 = (sum_x_red / (len(redarr)), sum_y_red / len(redarr))
+    x1, y1 = t1
+    x2, y2 = t2
+    t1 = (int(x1), int(y1))
+    t2 = (int(x2), int(y2))
     return t1, t2
 
 
@@ -52,10 +62,8 @@ def assignPoints(t1, t2, arr):
         result = calculateShortestDistance(x, y, t1, t2)
         if result == 1:
             bluearr.append((x, y))
-            pygame.draw.circle(display, (0, 0, 255), (x, y), 4)
         else:
             redarr.append((x, y))
-            pygame.draw.circle(display, (255, 0, 0), (x, y), 4)
 
 
 def calculateShortestDistance(x, y, t1, t2):
@@ -92,12 +100,14 @@ while not exit:
             if event.key == pygame.K_RETURN:
                 t1, t2 = selectCentroid(arr, bluearr, redarr)
                 count += 1
-                assignPoints(t1, t2, arr)
-    pygame.display.fill(white)
+    display.fill(white)
     drawcircles(arr)
-    drawRedBlueCircles(redarr,bluearr)
-    if count>0:
-        drawCentroid(t1,t2)
+    drawRedBlueCircles(redarr, bluearr)
+    if count > 0:
+        drawCentroid(t1, t2)
+        redarr = []
+        bluearr = []
+        assignPoints(t1, t2, arr)
     pygame.display.update()
     clock.tick(30)
 pygame.display.quit()
