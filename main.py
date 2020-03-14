@@ -3,11 +3,25 @@ import random
 import math
 import time
 
+white = (255,255,255)
+black = (0,0,0)
+red = (255,0,0)
+blue = (0,0,255)
 
 def drawcircles(arr):
     for (x, y) in arr:
-        pygame.draw.circle(display, (0, 0, 0), (x, y), 4)
+        pygame.draw.circle(display, black, (x, y), 4)
 
+def drawRedBlueCircles(redarr,bluearr):
+    for (x,y) in redarr:
+        pygame.draw.circle(display,red,(x,y),4)
+
+    for (x,y) in bluearr:
+        pygame.draw.circle(display,blue,(x,y),4)
+
+def drawCentroid(t1,t2):
+    pygame.draw.circle(display,blue,t1,5)
+    pygame.draw.circle(display,red,t2,5)
 
 def selectCentroid(arr, bluearr, redarr):
     if count == 0:
@@ -15,8 +29,8 @@ def selectCentroid(arr, bluearr, redarr):
         t1 = arr[i1]
         i2 = random.randrange(len(arr))
         t2 = arr[i2]
-        pygame.draw.circle(display, (255, 0, 0), t1, 4)
-        pygame.draw.circle(display, (0, 0, 255), t2, 4)
+        pygame.draw.circle(display, red, t1, 4)
+        pygame.draw.circle(display, blue, t2, 4)
     else:
         sum_x_blue = 0
         sum_y_blue = 0
@@ -30,8 +44,6 @@ def selectCentroid(arr, bluearr, redarr):
             sum_y_red += y
         t1 = (sum_x_blue / len(bluearr), sum_y_blue / len(bluearr))
         t2 = (sum_x_red / (len(redarr)), sum_y_red / len(redarr))
-        bluearr = []
-        redarr = []
     return t1, t2
 
 
@@ -76,12 +88,16 @@ while not exit:
         if event.type == pygame.MOUSEBUTTONDOWN:
             x, y = pygame.mouse.get_pos()
             arr.append((x, y))
-            pygame.draw.circle(display, (0, 0, 0), (x, y), 4)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 t1, t2 = selectCentroid(arr, bluearr, redarr)
                 count += 1
                 assignPoints(t1, t2, arr)
+    pygame.display.fill(white)
+    drawcircles(arr)
+    drawRedBlueCircles(redarr,bluearr)
+    if count>0:
+        drawCentroid(t1,t2)
     pygame.display.update()
     clock.tick(30)
 pygame.display.quit()
