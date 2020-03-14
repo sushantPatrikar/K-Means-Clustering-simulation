@@ -19,7 +19,7 @@
 <hr>
 
 <p align="center">
-<img src = "./img/fb.gif" height=400 width=600>
+<img src = "./img/algo.gif" height=400 width=600>
 </p>
 <h2> How it works</h2>
 <p>There are 8 inputs to neural network</p>
