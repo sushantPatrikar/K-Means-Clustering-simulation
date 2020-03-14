@@ -23,7 +23,9 @@
 </p>
 <h2> How to use</h2>
 <ol>
-	<h4>Plotting</h4>
+	<li>
+		<h3>Plotting</h3>
+	</li>
 
 </ol>
 <p>For detailed explanation, you can visit my <a href="https://sushantpatrikar.github.io/flappybirdAI.html"> website</a>.</p>
