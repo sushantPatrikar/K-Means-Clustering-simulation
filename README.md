@@ -19,7 +19,7 @@
 <hr>
 
 <p align="center">
-<img src = "./img/algo.gif" height=400 width=800>
+<img src = "./img/algo.gif" height=200 width=800>
 </p>
 <h2> How to use</h2>
 <ol>
