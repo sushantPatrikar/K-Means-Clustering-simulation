@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img height=150px src="./img/kicon.jpg" alt="Clustering-logo"></a>
+ <img height=150px src="./img/kicon.png" alt="Clustering-logo"></a>
 </p>
 <h1 align="center">K-Means-Clustering Simulator</h1>
 
