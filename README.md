@@ -25,10 +25,10 @@
 <ol>
 	<li>
 		<h4>Plotting</h4>
-		<p>
+		<p align="center">
 			<img src = "./img/plotting.gif" height=200 width=400>
 		</p>
-		<p align="center">
+		<p>
 			Plot the data points by clicking on the screen
 		</p>
 	</li>
