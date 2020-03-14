@@ -81,6 +81,7 @@ clock = pygame.time.Clock()
 width = 800
 height = 600
 display = pygame.display.set_mode((width, height))
+pygame.display.set_caption("K Means Clustering Simulation")
 exit = False
 arr = []
 
